@@ -1,6 +1,6 @@
 import * as LOADER from './loader';
 import * as PIXI from 'pixi.js';
-import scene1_json from '../static/ase/Scene1.json';
+import scene1_json from '../static/ase/scene_test.json';
 import { SceneBase, SceneData, SceneFrame, SceneMeta } from './scene';
 import { Scene1 } from './scene_1';
 
