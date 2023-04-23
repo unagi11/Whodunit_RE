@@ -1,7 +1,7 @@
 import * as LOADER from './loader';
 import * as PIXI from 'pixi.js';
 import scene1_json from '../static/ase/scene_test.json';
-import { SceneBase, SceneData, SceneFrame, SceneMeta } from './scene_base';
+import { SceneBase, SceneData, SceneFrame, SceneMeta } from './base/scene';
 import { Scene1 } from './scene_1';
 
 /**
@@ -18,8 +18,8 @@ export const app = new PIXI.Application({
 });
 global.app = app;
 
-global.DESIGN_WIDTH = 1280;
-global.DESIGN_HEIGHT = 720;
+global.DESIGN_WIDTH = 180 * 3;
+global.DESIGN_HEIGHT = 180 * 4;
 
 global.LETTER_WIDTH = 0;
 global.LETTER_HEIGHT = 0;
