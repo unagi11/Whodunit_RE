@@ -1,5 +1,5 @@
 import { Container, Sprite } from 'pixi.js';
-import { SceneBase, SceneData } from './scene';
+import { SceneBase, SceneData } from './scene_base';
 
 export class Scene1 extends SceneBase {
     drawer: Sprite;
