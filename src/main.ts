@@ -69,8 +69,7 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
-	let s_entrance = new SceneEntrance(scene_entrance_json);
-	s_entrance.draw(global.root);
+	let s_entrance = new SceneEntrance(scene_entrance_json, global.root);
 }
 
 // function makeScene(data: SceneData) {

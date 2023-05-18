@@ -6,12 +6,9 @@ export class SceneBase {
 	root?: PIXI.Container;
 	objects: { [key: string]: Container } = {};
 
-	constructor(data: SceneData) {
+	constructor(data: SceneData, parent : PIXI.Container) {
 		this.data = data;
-	}
 
-    draw(parent : PIXI.Container) {
-        const data = this.data;
         this.root = new PIXI.Container();
 
 		Object.values(data.frames).forEach((frame, index) => {
@@ -27,21 +24,17 @@ export class SceneBase {
 			let sprite = new PIXI.Sprite(trimmed_texture);
 			sprite.transform.position.set(frame.spriteSourceSize.x, frame.spriteSourceSize.y);
 			sprite.name = name;
+			sprite.interactive = true;
 
 			this.objects[name] = sprite;
-
-			sprite.interactive = true;
-			sprite.on('pointerdown', (a) => {
-				console.log(sprite.name);
-			});
 
 			// 스테이지에 Sprite 추가
 			this.root.addChild(sprite);
 		});
 
         parent.addChild(this.root);
-    }
-
+	}
+    
 	findObject(name: string): Container {
 		return this.objects[name];
 	}
