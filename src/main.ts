@@ -1,7 +1,6 @@
 import * as LOADER from './loader';
 import * as PIXI from 'pixi.js';
 import scene_entrance_json from '../static/ase/scene_entrance.json';
-import { SceneBase, SceneData, SceneFrames, SceneMeta } from './base/scene';
 import { SceneEntrance } from './s_entrance';
 
 /**
@@ -71,42 +70,3 @@ async function main() {
 
 	let s_entrance = new SceneEntrance(scene_entrance_json, global.root);
 }
-
-// function makeScene(data: SceneData) {
-// 	let frames: SceneFrames = data.frames;
-// 	let meta: SceneMeta = data.meta;
-// 	let names: string[] = meta.layers.map((layer) => layer.name as string);
-
-// 	Object.values(frames).map((frame, index) => {
-// 		let texture = PIXI.BaseTexture.from(`ase/${data.meta.image}`);
-// 		let rect = new PIXI.Rectangle(frame.frame.x, frame.frame.y, frame.frame.w, frame.frame.h);
-// 		let trimmed_texture = new PIXI.Texture(texture, rect);
-
-// 		// 이미지의 일부분을 잘라내어 Sprite 생성
-// 		const sprite = new PIXI.Sprite(trimmed_texture);
-// 		sprite.transform.position.set(frame.spriteSourceSize.x, frame.spriteSourceSize.y);
-// 		sprite.name = names[index];
-
-// 		// add touch button on sprite
-// 		sprite.interactive = true;
-// 		sprite.on('pointerdown', (a) => {
-// 			// rotate 360 animate
-
-// 			let rotate = (delta: number) => {
-// 				sprite.rotation += 0.1 * delta;
-
-// 				if (sprite.angle >= 360) {
-// 					app.ticker.remove(rotate);
-// 					sprite.angle = 0;
-// 				}
-// 			};
-
-// 			app.ticker.add(rotate);
-
-// 			console.log('clicked !! ' + sprite.name);
-// 		});
-
-// 		// 스테이지에 Sprite 추가
-// 		global.root.addChild(sprite);
-// 	});
-// }
