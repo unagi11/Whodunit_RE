@@ -30,12 +30,9 @@ global.LETTER_HEIGHT = 0;
 global.root = new PIXI.Container();
 app.stage.addChild(global.root);
 
-// main 함수 실행
 main();
 
-/**
- * 메인 함수 실행
- */
+/** 메인 함수 */
 async function main() {
 	await LOADER.load_all();
 
