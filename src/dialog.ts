@@ -1,38 +1,52 @@
 import * as PIXI from 'pixi.js';
+import { SceneBase, SceneData } from './base/scene';
+import ui_dialog_json from '../static/ase/ui_dialog.json';
 
-export class Dialog {
+export class Dialog extends SceneBase {
 
     // use singleton pattern
     private static instance: Dialog;
     static getInstance(): Dialog {
         if (!Dialog.instance) {
-            Dialog.instance = new Dialog();
+            Dialog.instance = new Dialog(global.root);
         }
         return Dialog.instance;
     }
+    
+    text: PIXI.Text;
+    panel : PIXI.Sprite;
+    frame : PIXI.Sprite;
 
-    dialog: PIXI.Container;
-    dialogBG: PIXI.Sprite;
-    dialogText: PIXI.Text;
+    constructor(parent : PIXI.Container) {
+        super(ui_dialog_json, parent);
 
-    constructor() {
+        this.panel = this.findObject('panel') as PIXI.Sprite;
+        this.frame = this.findObject('frame') as PIXI.Sprite;
 
-        this.dialog = new PIXI.Container();
-        this.dialogBG = new PIXI.Sprite();
-        this.dialogText = new PIXI.Text();
+        // load font POSPilgi
 
-        this.dialog.addChild(this.dialogBG);
-        this.dialogBG.addChild(this.dialogText);
+        
 
-        // 클릭하면 끄기
-        this.dialogBG.interactive = true;
-        this.dialogBG.on('pointerdown', () => {
-            this.dialog.visible = false;
+
+        let text_style = {
+            fontFamily : 'font/DunGeunMo.ttf',
+            fontSize: 16,
+            wordWrap : true,
+            wordWrapWidth : 400
+        }
+        this.text = new PIXI.Text('test', text_style);
+        this.text.position.set(20, 20);
+
+        this.frame.addChild(this.text)
+
+        this.panel.on('pointerdown', () => {
+            this.root.visible = false;
         });
     }
 
-    show(text: string) {
-        this.dialogText.text = text;
-        this.dialog.visible = true;
+    static show(text: string) {
+        let instance = Dialog.getInstance();
+        instance.text.text = text;
+        instance.root.visible = true;
     }
 }
