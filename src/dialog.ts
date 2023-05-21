@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { SceneBase, SceneData } from './base/scene';
 import ui_dialog_json from '../static/ase/ui_dialog.json';
+import { Helper } from './base/helper';
 
 export class Dialog extends SceneBase {
 
@@ -13,7 +14,7 @@ export class Dialog extends SceneBase {
         return Dialog.instance;
     }
     
-    text: PIXI.Text;
+    text_box: PIXI.Text;
     panel : PIXI.Sprite;
     frame : PIXI.Sprite;
 
@@ -23,30 +24,39 @@ export class Dialog extends SceneBase {
         this.panel = this.findObject('panel') as PIXI.Sprite;
         this.frame = this.findObject('frame') as PIXI.Sprite;
 
-        // load font POSPilgi
-
-        
-
-
         let text_style = {
-            fontFamily : 'font/DunGeunMo.ttf',
+            fontFamily : 'DOSPilgi',
             fontSize: 16,
+            lineHeight: 20,
             wordWrap : true,
             wordWrapWidth : 400
         }
-        this.text = new PIXI.Text('test', text_style);
-        this.text.position.set(20, 20);
-
-        this.frame.addChild(this.text)
-
-        this.panel.on('pointerdown', () => {
-            this.root.visible = false;
-        });
+        this.text_box = new PIXI.Text('test', text_style);
+        this.text_box.position.set(20, 20);
+        
+        this.frame.addChild(this.text_box)
     }
 
-    static show(text: string) {
+    static show(texts: string | string[]) {
+        if (typeof texts == 'string') texts = [texts];
+        if ([...texts].length == 0) return;
+
+        let index = 0;
+        texts = [...texts];
+
         let instance = Dialog.getInstance();
-        instance.text.text = text;
         instance.root.visible = true;
+        instance.text_box.text = texts[index];
+        console.log(texts[index])
+        
+        Helper.addTouchEndEvent(instance.panel, _ => {
+            index++;
+            if (index >= texts.length) {
+                instance.root.visible = false;
+                return;
+            }
+            instance.text_box.text = texts[index];
+            console.log(texts[index])
+        })
     }
 }

@@ -24,7 +24,6 @@ export class SceneBase {
 			let sprite = new PIXI.Sprite(trimmed_texture);
 			sprite.transform.position.set(frame.spriteSourceSize.x, frame.spriteSourceSize.y);
 			sprite.name = name;
-			sprite.interactive = true;
 
 			this.objects[name] = sprite;
 

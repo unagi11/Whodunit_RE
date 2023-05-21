@@ -6,7 +6,7 @@ import asset_option from './json/asset.json';
  */
 export async function load_all() {
 
-    const asset = await PIXI.Assets.load('/static/font/DOSPilgi.ttf');
+    const asset = await PIXI.Assets.load('./font/DOSPilgi.ttf');
 
     // await Assets.init({ manifest: asset_option });
 	// await Assets.loadBundle('test-screen');

@@ -1,6 +1,7 @@
 import { Container, Sprite } from 'pixi.js';
 import { SceneBase, SceneData } from './base/scene';
 import { Dialog } from './dialog';
+import { Helper } from './base/helper';
 
 export class SceneEntrance extends SceneBase {
 
@@ -19,8 +20,9 @@ export class SceneEntrance extends SceneBase {
         this.door = this.findObject('door') as Sprite;
         this.BG = this.findObject('BG') as Sprite;
 
-        this.rug.on('pointerdown', (a) => {
-            Dialog.show(' 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하 가 나 다 라 마 바 사 아 자 차 카 파 하');
-        });
+        Helper.addTouchEndEvent(this.frame, _ => { Dialog.show('웃고있는 남자의 그림이다.'); })
+        Helper.addTouchEndEvent(this.door, _ => { Dialog.show('내가 들어온 문이다.\n사건을 해결하기 전까지는 나갈수 없다.'); })
+        Helper.addTouchEndEvent(this.calendar, _ => { Dialog.show('달력이다.\n오늘은 6월 1일이다.'); })
+        Helper.addTouchEndEvent(this.rug, _ => { Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']) })
     }
 }
