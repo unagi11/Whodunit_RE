@@ -11,7 +11,7 @@ export const app = new PIXI.Application({
 	view: document.getElementById('pixi-canvas') as HTMLCanvasElement,
 	resolution: 1,
 	autoDensity: true,
-	backgroundColor: 0x331111,
+	backgroundColor: 0x442211,
 	width: global.DESIGN_WIDTH,
 	height: global.DESIGN_HEIGHT,
 	antialias: false,
