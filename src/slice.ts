@@ -37,7 +37,7 @@ const error = 0.001;
 export class SliceableSprite {
 	root: Container;
 	polygons: Polygon[];
-	peices: {container : Container, sprite : Sprite, graphics : Graphics }[];
+	peices: {container : Container, sprite : Sprite, graphics : Graphics }[] = [];
 
 	/**
 	 * @param parent 붙힐 부모
