@@ -1,8 +1,7 @@
 import * as LOADER from './loader';
 import * as PIXI from 'pixi.js';
-import scene_entrance_json from '../static/ase/scene_entrance.json';
-import { SceneEntrance } from './s_entrance';
 import { Dialog } from './dialog';
+import { SceneManager, SceneType } from './scene';
 
 /**
  * pixi application 생성
@@ -66,7 +65,6 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
-	let s_entrance = new SceneEntrance(scene_entrance_json, global.root);
-
+    SceneManager.loadScene(SceneType.Entrance);
     Dialog.show(['안녕하세요.', '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', '살인사건 현장의 단서들을 조합해서 범인을 찾아내세요.'])
 }

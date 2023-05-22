@@ -1,17 +1,16 @@
 import * as PIXI from 'pixi.js';
-import { SceneBase, SceneData } from './base/scene';
+import { ObjectBase, ObjectData } from './object';
 import ui_dialog_json from '../static/ase/ui_dialog.json';
-import { Helper } from './base/helper';
+import { Helper } from './helper';
 
-export class Dialog extends SceneBase {
+export class Dialog extends ObjectBase {
 
-    // use singleton pattern
-    private static instance: Dialog;
-    static getInstance(): Dialog {
-        if (!Dialog.instance) {
-            Dialog.instance = new Dialog(global.root);
+    private static _instance: Dialog;
+    static get instance(): Dialog {
+        if (!Dialog._instance) {
+            Dialog._instance = new Dialog(global.root);
         }
-        return Dialog.instance;
+        return Dialog._instance;
     }
     
     text_box: PIXI.Text;
@@ -44,7 +43,7 @@ export class Dialog extends SceneBase {
         let index = 0;
         texts = [...texts];
 
-        let instance = Dialog.getInstance();
+        let instance = Dialog.instance;
         instance.root.visible = true;
         instance.text_box.text = texts[index];
         console.log(texts[index])

@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js';
+import { SceneManager } from './scene';
+import { GameManager } from './game';
 
 /**
  * 에셋을 로드 하는 함수.
@@ -11,4 +13,7 @@ export async function load_all() {
     ])
     await PIXI.Assets.load('DOSPilgi')
     await PIXI.Assets.load('pngs')
+
+    SceneManager.instance;
+    GameManager.instance;
 }
