@@ -2,7 +2,7 @@ import { Container, Sprite } from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import { Dialog } from './dialog';
 import { Helper } from './helper';
-import sc_entrance_data from '../static/ase/scene_entrance.json';
+import sc_entrance_data from '../static/object/sc_entrance.json';
 
 export enum SceneType {
     Entrance = 'Entrance',

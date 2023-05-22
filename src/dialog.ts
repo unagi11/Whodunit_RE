@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
-import ui_dialog_json from '../static/ase/ui_dialog.json';
+import ui_dialog_json from '../static/object/ui_dialog.json';
 import { Helper } from './helper';
 
 export class Dialog extends ObjectBase {
