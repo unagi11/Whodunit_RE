@@ -15,7 +15,7 @@ export class ObjectBase {
 			const layer = data.meta.layers[index];
 			const name = layer.name;
 
-			let texture = PIXI.BaseTexture.from(`ase/${data.meta.image}`);
+			let texture = PIXI.BaseTexture.from(`object/${data.meta.image}`);
 			let rect = frame.frame;
 			let rectangle = new PIXI.Rectangle(rect.x, rect.y, rect.w, rect.h);
 			let trimmed_texture = new PIXI.Texture(texture, rectangle);
