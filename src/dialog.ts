@@ -43,19 +43,33 @@ export class Dialog extends ObjectBase {
         let index = 0;
         texts = [...texts];
 
-        let instance = Dialog.instance;
-        instance.root.visible = true;
-        instance.text_box.text = texts[index];
-        console.log(texts[index])
+        Dialog.instance.root.visible = true;
+        Dialog.play(texts[index]);
         
-        Helper.addTouchEndEvent(instance.panel, _ => {
+        Helper.addTouchEndEvent(Dialog.instance.panel, _ => {
             index++;
-            if (index >= texts.length) {
-                instance.root.visible = false;
-                return;
-            }
-            instance.text_box.text = texts[index];
-            console.log(texts[index])
+            if (index >= texts.length) Dialog.instance.root.visible = false;
+            else Dialog.play(texts[index]);
         })
+    }
+
+    static play(text : string) {
+        
+        let global_app = global.app as PIXI.Application;
+
+        let time = 0;
+        let text_update = (delta : number) => {
+            time += delta / 2;
+            let len = Math.floor(time);
+            Dialog.instance.text_box.text = text.slice(0, len);
+
+            if (len >= text.length) {
+                Dialog.instance.text_box.text = text;
+                global_app.ticker.remove(text_update);
+            }
+        }
+
+        global_app.ticker.add(text_update);
+        console.log(text)
     }
 }

@@ -9,6 +9,7 @@ export async function load_all() {
     PIXI.Assets.add('DOSPilgi', './font/DOSPilgi.ttf');
     PIXI.Assets.add('pngs', [
         './object/sc_entrance.png',
+        './object/sc_lounge.png',
         './object/ui_dialog.png'
     ])
     await PIXI.Assets.load('DOSPilgi')
