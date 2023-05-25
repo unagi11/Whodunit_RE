@@ -1,0 +1,44 @@
+{ "frames": {
+   "sc_lounge (BG).aseprite": {
+    "frame": { "x": 1, "y": 1, "w": 480, "h": 360 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 480, "h": 360 },
+    "sourceSize": { "w": 480, "h": 360 },
+    "duration": 100
+   },
+   "sc_lounge (door_entrance).aseprite": {
+    "frame": { "x": 483, "y": 1, "w": 95, "h": 210 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 41, "y": 72, "w": 95, "h": 210 },
+    "sourceSize": { "w": 480, "h": 360 },
+    "duration": 100
+   },
+   "sc_lounge (sofa).aseprite": {
+    "frame": { "x": 580, "y": 1, "w": 159, "h": 119 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 94, "y": 186, "w": 159, "h": 119 },
+    "sourceSize": { "w": 480, "h": 360 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.2.40-x64",
+  "image": "sc_lounge.png",
+  "format": "RGBA8888",
+  "size": { "w": 740, "h": 362 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "BG", "opacity": 255, "blendMode": "normal" },
+   { "name": "door_entrance", "opacity": 255, "blendMode": "normal" },
+   { "name": "sofa", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

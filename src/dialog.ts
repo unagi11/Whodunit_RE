@@ -31,7 +31,7 @@ export class Dialog extends ObjectBase {
             wordWrapWidth : 400
         }
         this.text_box = new PIXI.Text('test', text_style);
-        this.text_box.position.set(20, 20);
+        this.text_box.position.set(20, 16);
         
         this.frame.addChild(this.text_box)
     }
