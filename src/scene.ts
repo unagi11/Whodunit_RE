@@ -5,6 +5,11 @@ import { Helper } from './helper';
 import sc_entrance_data from '../static/object/sc_entrance.json';
 import sc_lounge_data from '../static/object/sc_lounge.json';
 
+export enum SceneLayer {
+    Background = 'Background',
+    Dialog = 'Dialog',
+}
+
 export enum SceneType {
     Entrance = 'Entrance',
     Lounge = 'Lounge',
@@ -88,7 +93,6 @@ export class SceneEntrance extends SceneBase {
         Helper.addTouchEndEvent(this.calendar, _ => { Dialog.show('달력이다.\n오늘은 6월 1일이다.'); })
         Helper.addTouchEndEvent(this.rug, _ => { Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']) })
         Helper.addTouchEndEvent(this.door_lounge, _ => { 
-            Dialog.show('라운지로 가즈아~!'); 
             SceneManager.loadScene(SceneType.Lounge);
         })
     }

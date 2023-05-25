@@ -39,6 +39,7 @@ async function main() {
 		let inner_ratio = window.innerWidth / window.innerHeight;
 		let design_ratio = global.DESIGN_WIDTH / global.DESIGN_HEIGHT;
 		let root = global.root as PIXI.Container;
+        root.name = 'root';
 
 		// 윈도우 width가 더 긴경우
 		if (inner_ratio > design_ratio) {

@@ -10,6 +10,7 @@ export class ObjectBase {
 		this.data = data;
 
         this.root = new PIXI.Container();
+        this.root.name = data.meta.image;
 
 		Object.values(data.frames).forEach((frame, index) => {
 			const layer = data.meta.layers[index];

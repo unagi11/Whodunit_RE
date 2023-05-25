@@ -7,7 +7,7 @@ export class Dialog extends ObjectBase {
 
     private static _instance: Dialog;
     static get instance(): Dialog {
-        if (!Dialog._instance) {
+        if (!Dialog._instance || !Dialog._instance.root.parent) {
             Dialog._instance = new Dialog(global.root);
         }
         return Dialog._instance;
