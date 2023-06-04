@@ -67,5 +67,9 @@ async function main() {
 	resize();
 
     SceneManager.loadScene(SceneType.Entrance);
-    Dialog.show(['안녕하세요.', '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', '살인사건 현장의 단서들을 조합해서 범인을 찾아내세요.'])
+    Dialog.show([
+        '안녕하세요.', 
+        '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', 
+        '살인사건 현장의 단서들을 조합해서 범인을 \n찾아내세요.'
+    ])
 }
