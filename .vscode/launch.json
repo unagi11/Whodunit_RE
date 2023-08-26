@@ -6,7 +6,7 @@
             "request": "launch",
             "url": "http://localhost:3163/",
         },
-        {
+        {   
             "type": "chrome",
             "name": "ATTACH",
             "request": "attach",
