@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import ui_dialog_json from '../static/object/ui_dialog.json';
-import { Helper } from './helper';
+import { CursorType, Helper } from './helper';
 
 export class Dialog extends ObjectBase {
 
@@ -49,11 +49,17 @@ export class Dialog extends ObjectBase {
         Dialog.instance.root.visible = true;
         Dialog.play(texts[index]);
         
-        Helper.addTouchEndEvent(Dialog.instance.panel, _ => {
-            if (Dialog.instance.texting) Dialog.end(texts[index]);
-            else if (index < texts.length - 1) Dialog.play(texts[++index]);
-            else Dialog.instance.root.visible = false;
-        })
+        Helper.addTouchEndEvent(
+            {
+                container: Dialog.instance.panel,
+                cursor: CursorType.DEFAULT,
+                func: _ => {
+                    if (Dialog.instance.texting) Dialog.end(texts[index]);
+                    else if (index < texts.length - 1) Dialog.play(texts[++index]);
+                    else Dialog.instance.root.visible = false;
+                }
+            }
+        )
     }
 
     static play(text : string) {

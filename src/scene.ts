@@ -1,7 +1,7 @@
 import { Container, Sprite } from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import { Dialog } from './dialog';
-import { Helper } from './helper';
+import { CursorType, Helper } from './helper';
 import sc_entrance_data from '../static/object/sc_entrance.json';
 import sc_lounge_data from '../static/object/sc_lounge.json';
 
@@ -88,13 +88,27 @@ export class SceneEntrance extends SceneBase {
         this.door_lounge = this.findObject('door_lounge') as Sprite;
         this.BG = this.findObject('BG') as Sprite;
 
-        Helper.addTouchEndEvent(this.frame, _ => { Dialog.show('웃고있는 남자의 그림이다.'); })
-        Helper.addTouchEndEvent(this.door_outside, _ => { Dialog.show('내가 들어온 문이다.\n사건을 해결하기 전까지는 나갈수 없다.'); })
-        Helper.addTouchEndEvent(this.calendar, _ => { Dialog.show('달력이다.\n오늘은 6월 1일이다.'); })
-        Helper.addTouchEndEvent(this.rug, _ => { Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']) })
-        Helper.addTouchEndEvent(this.door_lounge, _ => { 
-            SceneManager.loadScene(SceneType.Lounge);
-        })
+        Helper.addTouchEndEvent({
+            container: this.frame,
+            func: e => Dialog.show('웃고있는 남자의 그림이다.'),
+        });
+        Helper.addTouchEndEvent({
+            container: this.door_outside,
+            func: e => Dialog.show('내가 들어온 문이다.\n사건을 해결하기 전까지는 나갈수 없다.'),
+        });
+
+        Helper.addTouchEndEvent({
+            container: this.calendar,
+            func: e => Dialog.show('달력이다.\n오늘은 6월 1일이다.'),
+            cursor: CursorType.ZOOM,
+        });
+
+        Helper.addTouchEndEvent({
+            container: this.rug,
+            func: e => Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']),
+        });
+
+        Helper.addTouchChangeScene(this.door_lounge, SceneType.Lounge);
     }
 }
 
@@ -109,12 +123,12 @@ export class SceneLounge extends SceneBase {
         this.door_entrance = this.findObject('door_entrance') as Sprite;
         this.sofa = this.findObject('sofa') as Sprite;
 
-        Helper.addTouchEndEvent(this.door_entrance, () => {
-            SceneManager.loadScene(SceneType.Entrance);
-        })
+        Helper.addTouchChangeScene(this.door_entrance, SceneType.Entrance);
 
-        Helper.addTouchEndEvent(this.sofa, () => {
-            Dialog.show('소파다.\n누군가 앉아있었던 흔적이 남아있다.');
-        });
+        Helper.addTouchEndEvent({
+			container: this.sofa,
+			func: e => Dialog.show('소파다.\n누군가 앉아있었던 흔적이 남아있다.'),
+			hitArea: [0, 40, 100, 0, 100, 100, 0, 100],
+		});
     }
 }

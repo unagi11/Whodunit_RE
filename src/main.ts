@@ -26,6 +26,8 @@ global.RATIO_HEIGHT = 3;
 global.LETTER_WIDTH = 0;
 global.LETTER_HEIGHT = 0;
 
+global.debug_mode = true;
+
 global.root = new PIXI.Container();
 app.stage.addChild(global.root);
 
@@ -66,10 +68,10 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
-    SceneManager.loadScene(SceneType.Entrance);
-    Dialog.show([
-        '안녕하세요.', 
-        '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', 
-        '살인사건 현장의 단서들을 조합해서 범인을 \n찾아내세요.'
-    ])
+    SceneManager.loadScene(SceneType.Lounge);
+    // Dialog.show([
+    //     '안녕하세요.', 
+    //     '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', 
+    //     '살인사건 현장의 단서들을 조합해서 범인을 \n찾아내세요.'
+    // ])
 }
