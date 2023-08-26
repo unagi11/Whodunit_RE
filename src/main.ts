@@ -68,6 +68,9 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
+    app.ticker.minFPS = 30;
+    app.ticker.maxFPS = 60;
+
     // show fps
     let fps_text = new PIXI.Text('FPS', {fill: 0xffffff});
     app.stage.addChild(fps_text);
