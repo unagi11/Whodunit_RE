@@ -68,6 +68,14 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
+    // show fps
+    let fps_text = new PIXI.Text('FPS', {fill: 0xffffff});
+    app.stage.addChild(fps_text);
+    app.ticker.add(() => {
+        fps_text.text = 'FPS : ' + app.ticker.FPS.toFixed(0);
+    })
+
+
     SceneManager.loadScene(SceneType.Lounge);
     // Dialog.show([
     //     '안녕하세요.', 
