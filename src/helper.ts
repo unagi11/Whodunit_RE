@@ -32,9 +32,17 @@ export class Helper {
         container.interactive = true;
         container.onpointerdown = e => {
             func(e);
+            document.body.style.cursor = CursorType.DEFAULT;
         };
 
-        container.cursor = cursor || CursorType.HELP;
+        container.onpointermove = (e) => {
+			document.body.style.cursor = cursor || CursorType.HELP;
+		};
+        container.onpointerout = e => {
+            document.body.style.cursor = CursorType.DEFAULT;
+        }
+
+        // container.cursor = cursor || CursorType.HELP;
         if (hitArea) container.hitArea = new PIXI.Polygon(hitArea);
         if (global.debug_mode) {
             hitArea = hitArea || [0, 0, container.width, 0, container.width, container.height, 0, container.height];
