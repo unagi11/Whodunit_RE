@@ -26,6 +26,7 @@ global.RATIO_HEIGHT = 3;
 global.LETTER_WIDTH = 0;
 global.LETTER_HEIGHT = 0;
 
+global.target_fps = 30;
 global.debug_mode = true;
 
 global.root = new PIXI.Container();
@@ -68,16 +69,14 @@ async function main() {
 	window.onresize = resize;
 	resize();
 
-    app.ticker.minFPS = 30;
-    app.ticker.maxFPS = 60;
+    app.ticker.minFPS = global.target_fps;
+    app.ticker.maxFPS = global.target_fps;
 
-    // show fps
     let fps_text = new PIXI.Text('FPS', {fill: 0xffffff});
     app.stage.addChild(fps_text);
     app.ticker.add(() => {
         fps_text.text = 'FPS : ' + app.ticker.FPS.toFixed(0);
     })
-
 
     SceneManager.loadScene(SceneType.Lounge);
     // Dialog.show([
