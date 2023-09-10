@@ -3,6 +3,8 @@ import * as PIXI from 'pixi.js';
 import { Dialog } from './dialog';
 import { SceneManager, SceneType } from './scene';
 
+import hologram_src from './shader/hologram.frag';
+
 /**
  * pixi application 생성
  */
@@ -10,10 +12,11 @@ export const app = new PIXI.Application({
 	view: document.getElementById('pixi-canvas') as HTMLCanvasElement,
 	resolution: 1,
 	autoDensity: true,
-	backgroundColor: 0x442211,
+	backgroundColor: 0x555555,
 	width: global.DESIGN_WIDTH,
 	height: global.DESIGN_HEIGHT,
 	antialias: false,
+    resizeTo: window
 });
 global.app = app;
 
@@ -31,6 +34,17 @@ global.debug_mode = true;
 
 global.root = new PIXI.Container();
 app.stage.addChild(global.root);
+const root = global.root as PIXI.Container;
+root.name = 'root';
+
+const global_filter = new PIXI.Filter(undefined, hologram_src);
+root.filters = [global_filter];
+
+let u_time = 0;
+app.ticker.add(delta => {
+    u_time += delta / 100;
+    global_filter.uniforms.u_time = u_time;
+})
 
 main();
 
@@ -38,32 +52,33 @@ main();
 async function main() {
 	await LOADER.load_all();
 
-	function resize() {
+	let resize = () => {
 		let inner_ratio = window.innerWidth / window.innerHeight;
 		let design_ratio = global.DESIGN_WIDTH / global.DESIGN_HEIGHT;
-		let root = global.root as PIXI.Container;
-        root.name = 'root';
 
+        let scale = 1.
 		// 윈도우 width가 더 긴경우
 		if (inner_ratio > design_ratio) {
-			let scale = window.innerHeight / global.DESIGN_HEIGHT;
+			scale = window.innerHeight / global.DESIGN_HEIGHT;
 			global.LETTER_WIDTH = window.innerWidth / 2 - ((window.innerHeight / global.RATIO_HEIGHT) * global.RATIO_WIDTH) / 2;
 			global.LETTER_HEIGHT = 0;
-
-			root.transform.scale.set(scale);
-			root.transform.position.set(global.LETTER_WIDTH, global.LETTER_HEIGHT);
-			app.renderer.resize(window.innerWidth, window.innerHeight);
 		}
 		// 윈도우 height가 더 긴경우
 		else {
-			let scale = window.innerWidth / global.DESIGN_WIDTH;
+			scale = window.innerWidth / global.DESIGN_WIDTH;
 			global.LETTER_WIDTH = 0;
 			global.LETTER_HEIGHT = window.innerHeight / 2 - ((window.innerWidth / global.RATIO_WIDTH) * global.RATIO_HEIGHT) / 2;
+        }
 
-			root.transform.scale.set(scale);
-			root.transform.position.set(global.LETTER_WIDTH, global.LETTER_HEIGHT);
-			app.renderer.resize(window.innerWidth, window.innerHeight);
-		}
+        global.REAL_WIDTH = global.DESIGN_WIDTH * scale;
+        global.REAL_HEIGHT = global.DESIGN_HEIGHT * scale;
+
+        global_filter.uniforms.u_resolution = [global.REAL_WIDTH, global.REAL_HEIGHT];
+
+        root.transform.scale.set(scale);
+        root.transform.position.set(global.LETTER_WIDTH, global.LETTER_HEIGHT);
+        
+        console.log (global.REAL_WIDTH, global.REAL_HEIGHT);
 	}
 
 	window.onresize = resize;
@@ -79,9 +94,4 @@ async function main() {
     })
 
     SceneManager.loadScene(SceneType.Lounge);
-    // Dialog.show([
-    //     '안녕하세요.', 
-    //     '본 게임에서 당신은 탐정으로서 살인사건을 조사하게 됩니다.', 
-    //     '살인사건 현장의 단서들을 조합해서 범인을 \n찾아내세요.'
-    // ])
 }
