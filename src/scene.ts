@@ -36,15 +36,15 @@ export class SceneManager {
 
         if (scene_type == instance.current_scene?.scene_type) return instance.current_scene;
 
-        let global_root = global.root as Container;
+        let n_scene = global.n_scene as Container;
 
         switch (scene_type) {
             case SceneType.Entrance:
-                instance.current_scene = new SceneEntrance(sc_entrance_data, global_root);
+                instance.current_scene = new SceneEntrance(sc_entrance_data, n_scene);
                 break;
 
             case SceneType.Lounge:
-                instance.current_scene = new SceneLounge(sc_lounge_data, global_root);
+                instance.current_scene = new SceneLounge(sc_lounge_data, n_scene);
                 break;
 
             case SceneType.Kitchen:

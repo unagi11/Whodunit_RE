@@ -50,8 +50,8 @@ void main(void) {
     col *= 1.0 - 0.65 * vec3(clamp((mod(vTextureCoord.x, 2.0) - 1.0) * 2.0, 0.0, 1.0));
 
 	// Remove the next line to stop cross-fade between original and postprocess
-    // float comp = smoothstep(0.1, 0.9, sin(u_time));
-    // vec3 oricol = texture2D(uSampler, vTextureCoord).rgb;
+    // float comp = smoothstep(0.1, 0.9, sin(u_time * 4.) * 0.5 + 0.5);
+    // vec3 oricol = vec3(vTextureCoord.x, vTextureCoord.y, 0.);
     // col = mix( col, oricol, comp );
 
     gl_FragColor = vec4(col, 1.0);

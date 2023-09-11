@@ -16,7 +16,6 @@ export const app = new PIXI.Application({
 	width: global.DESIGN_WIDTH,
 	height: global.DESIGN_HEIGHT,
 	antialias: false,
-    resizeTo: window
 });
 global.app = app;
 
@@ -37,13 +36,19 @@ app.stage.addChild(global.root);
 const root = global.root as PIXI.Container;
 root.name = 'root';
 
+global.n_scene = new PIXI.Container();
+const n_scene = global.n_scene as PIXI.Container;
+root.addChild(n_scene);
+n_scene.name = 'n_scene';
+
 const global_filter = new PIXI.Filter(undefined, hologram_src);
-root.filters = [global_filter];
+app.stage.filters = [global_filter];
 
 let u_time = 0;
 app.ticker.add(delta => {
     u_time += delta / 100;
     global_filter.uniforms.u_time = u_time;
+    global_filter.uniforms.u_resolution = [global.REAL_WIDTH, global.REAL_HEIGHT];
 })
 
 main();
@@ -73,10 +78,8 @@ async function main() {
         global.REAL_WIDTH = global.DESIGN_WIDTH * scale;
         global.REAL_HEIGHT = global.DESIGN_HEIGHT * scale;
 
-        global_filter.uniforms.u_resolution = [global.REAL_WIDTH, global.REAL_HEIGHT];
-
+        app.renderer.resize(global.REAL_WIDTH, global.REAL_HEIGHT);
         root.transform.scale.set(scale);
-        root.transform.position.set(global.LETTER_WIDTH, global.LETTER_HEIGHT);
         
         console.log (global.REAL_WIDTH, global.REAL_HEIGHT);
 	}
@@ -87,8 +90,8 @@ async function main() {
     app.ticker.minFPS = global.target_fps;
     app.ticker.maxFPS = global.target_fps;
 
-    let fps_text = new PIXI.Text('FPS', {fill: 0xffffff});
-    app.stage.addChild(fps_text);
+    let fps_text = new PIXI.Text('FPS', {fill: 0xffffff, fontSize: 16});
+    root.addChild(fps_text);
     app.ticker.add(() => {
         fps_text.text = 'FPS : ' + app.ticker.FPS.toFixed(0);
     })
