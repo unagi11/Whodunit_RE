@@ -79,8 +79,6 @@ async function main() {
 
         app.renderer.resize(global.REAL_WIDTH, global.REAL_HEIGHT);
         root.transform.scale.set(scale);
-        
-        console.log (global.REAL_WIDTH, global.REAL_HEIGHT);
 	}
 
 	window.onresize = resize;

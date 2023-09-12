@@ -1,6 +1,5 @@
 import * as PIXI from 'pixi.js';
 import { SceneManager, SceneType } from './scene';
-import { app } from './main';
 
 export enum CursorType {
     DEFAULT = 'default',

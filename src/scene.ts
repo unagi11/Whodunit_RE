@@ -2,8 +2,8 @@ import { Container, Sprite } from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import { Dialog } from './dialog';
 import { CursorType, Helper } from './helper';
-import sc_entrance_data from '../static/scene/sc_entrance.json';
-import sc_lounge_data from '../static/scene/sc_lounge.json';
+import sc_entrance_data from '../static/sc_entrance.json';
+import sc_lounge_data from '../static/sc_lounge.json';
 
 export enum SceneLayer {
     Background = 'Background',
