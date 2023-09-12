@@ -37,6 +37,7 @@ export class SceneManager {
         if (scene_type == instance.current_scene?.scene_type) return instance.current_scene;
 
         let n_scene = global.n_scene as Container;
+        n_scene.removeChildren();
 
         switch (scene_type) {
             case SceneType.Entrance:
@@ -90,22 +91,22 @@ export class SceneEntrance extends SceneBase {
 
         Helper.addTouchEndEvent({
             container: this.frame,
-            func: e => Dialog.show('웃고있는 남자의 그림이다.'),
+            func: () => Dialog.show('웃고있는 남자의 그림이다.'),
         });
         Helper.addTouchEndEvent({
             container: this.door_outside,
-            func: e => Dialog.show('내가 들어온 문이다.\n사건을 해결하기 전까지는 나갈수 없다.'),
+            func: () => Dialog.show('내가 들어온 문이다.\n사건을 해결하기 전까지는 나갈수 없다.'),
         });
 
         Helper.addTouchEndEvent({
             container: this.calendar,
-            func: e => Dialog.show('달력이다.\n오늘은 6월 1일이다.'),
+            func: () => Dialog.show('달력이다.\n오늘은 6월 1일이다.'),
             cursor: CursorType.ZOOM,
         });
 
         Helper.addTouchEndEvent({
             container: this.rug,
-            func: e => Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']),
+            func: () => Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']),
         });
 
         Helper.addTouchChangeScene(this.door_lounge, SceneType.Lounge);
@@ -127,7 +128,7 @@ export class SceneLounge extends SceneBase {
 
         Helper.addTouchEndEvent({
 			container: this.sofa,
-			func: e => Dialog.show('소파다.\n누군가 앉아있었던 흔적이 남아있다.'),
+			func: () => Dialog.show('소파다.\n누군가 앉아있었던 흔적이 남아있다.'),
 			hitArea: [0, 40, 100, 0, 100, 100, 0, 100],
 		});
     }

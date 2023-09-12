@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
-import ui_dialog_json from '../static/object/ui_dialog.json';
+import ui_dialog_json from '../static/ui/ui_dialog.json';
 import { CursorType, Helper } from './helper';
 
 export class Dialog extends ObjectBase {
@@ -17,13 +17,13 @@ export class Dialog extends ObjectBase {
     }
     
     text_box: PIXI.Text;
-    panel : PIXI.Sprite;
+    close : PIXI.Sprite;
     frame : PIXI.Sprite;
 
     constructor(parent : PIXI.Container) {
         super(ui_dialog_json, parent);
 
-        this.panel = this.findObject('panel') as PIXI.Sprite;
+        this.close = this.findObject('close') as PIXI.Sprite;
         this.frame = this.findObject('frame') as PIXI.Sprite;
 
         let text_style = {
@@ -51,7 +51,7 @@ export class Dialog extends ObjectBase {
         
         Helper.addTouchEndEvent(
             {
-                container: Dialog.instance.panel,
+                container: Dialog.instance.close,
                 cursor: CursorType.DEFAULT,
                 func: _ => {
                     if (Dialog.instance.texting) Dialog.end(texts[index]);

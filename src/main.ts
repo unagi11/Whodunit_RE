@@ -1,9 +1,8 @@
 import * as LOADER from './loader';
 import * as PIXI from 'pixi.js';
-import { Dialog } from './dialog';
 import { SceneManager, SceneType } from './scene';
 
-import hologram_src from './shader/hologram.frag';
+import hologram_src from './shader/screen_effect.frag';
 
 /**
  * pixi application 생성
@@ -96,5 +95,5 @@ async function main() {
         fps_text.text = 'FPS : ' + app.ticker.FPS.toFixed(0);
     })
 
-    SceneManager.loadScene(SceneType.Lounge);
+    SceneManager.loadScene(SceneType.Entrance);
 }
