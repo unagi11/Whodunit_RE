@@ -5,7 +5,7 @@ import * as PIXI from 'pixi.js';
  */
 export async function load_all() {
     PIXI.Assets.add('fonts', './DOSPilgi.ttf');
-    PIXI.Assets.add('images', [ './sc_entrance.png', './sc_lounge.png', './ui_dialog.png' ])
+    PIXI.Assets.add('images', ['./scene_entrance.png', './scene_lounge.png', './scene_restroom.png', './ui_dialog.png']);
     await PIXI.Assets.load('fonts')
     await PIXI.Assets.load('images')
 }

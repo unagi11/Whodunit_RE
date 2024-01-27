@@ -18,13 +18,13 @@ export const app = new PIXI.Application({
 });
 global.app = app;
 
-global.DESIGN_WIDTH = 480;
-global.DESIGN_HEIGHT = 360;
+global.DESIGN_WIDTH  = 1536;     // 512 * 3
+global.DESIGN_HEIGHT = 1024;    // 512 * 2
 
-global.RATIO_WIDTH = 4;
-global.RATIO_HEIGHT = 3;
+global.RATIO_WIDTH  = 3;
+global.RATIO_HEIGHT = 2;
 
-global.LETTER_WIDTH = 0;
+global.LETTER_WIDTH  = 0;
 global.LETTER_HEIGHT = 0;
 
 global.target_fps = 30;
@@ -93,5 +93,5 @@ async function main() {
         fps_text.text = 'FPS : ' + app.ticker.FPS.toFixed(0);
     })
 
-    SceneManager.loadScene(SceneType.Entrance);
+    SceneManager.loadScene(SceneType.RESTROOM);
 }

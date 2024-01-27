@@ -8,8 +8,5 @@ export class GameManager {
         }
         return GameManager._instance;
     }
-
-    constructor() {
-
-    }
+    
 }

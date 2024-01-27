@@ -2,21 +2,22 @@ import { Container, Sprite } from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import { Dialog } from './dialog';
 import { CursorType, Helper } from './helper';
-import sc_entrance_data from '../static/sc_entrance.json';
-import sc_lounge_data from '../static/sc_lounge.json';
+import scene_entrance_json from '../static/scene_entrance.json';
+import scene_lounge_json from '../static/scene_lounge.json';
+import scene_restroom_json from '../static/scene_restroom.json';
 
 export enum SceneLayer {
-    Background = 'Background',
+    BACKGROUND = 'BACKGROUND',
     Dialog = 'Dialog',
 }
 
 export enum SceneType {
-    Entrance = 'Entrance',
-    Lounge = 'Lounge',
-    Kitchen = 'Kitchen',
-    BathRoom = 'BathRoom',
-    LivingRoom = 'LivingRoom',
-    BedRoom = 'BedRoom',
+    RESTROOM = 'RESTROOM',
+    ENTRANCE = 'ENTRANCE',
+    LOUNGE = 'LOUNGE',
+    KITCHEN = 'KITCHEN',
+    LIVINGROOM = 'LIVINGROOM',
+    BEDROOM = 'BEDROOM',
 }
 
 export class SceneManager {
@@ -40,24 +41,25 @@ export class SceneManager {
         n_scene.removeChildren();
 
         switch (scene_type) {
-            case SceneType.Entrance:
-                instance.current_scene = new SceneEntrance(sc_entrance_data, n_scene);
+            case SceneType.ENTRANCE:
+                instance.current_scene = new SceneEntrance(scene_entrance_json, n_scene);
                 break;
 
-            case SceneType.Lounge:
-                instance.current_scene = new SceneLounge(sc_lounge_data, n_scene);
+            case SceneType.LOUNGE:
+                instance.current_scene = new SceneLounge(scene_lounge_json, n_scene);
                 break;
 
-            case SceneType.Kitchen:
+            case SceneType.KITCHEN:
                 break;
 
-            case SceneType.BathRoom:
+            case SceneType.RESTROOM:
+                instance.current_scene = new SceneRestroom(scene_restroom_json, n_scene);
                 break;
 
-            case SceneType.LivingRoom:
+            case SceneType.LIVINGROOM:
                 break;
 
-            case SceneType.BedRoom:
+            case SceneType.BEDROOM:
                 break;
         }
 
@@ -69,8 +71,46 @@ abstract class SceneBase extends ObjectBase {
     abstract scene_type : SceneType;
 }
 
+export class SceneRestroom extends SceneBase {
+    scene_type: SceneType = SceneType.RESTROOM;
+
+    door : Sprite;
+    mirror : Sprite;
+    toilet : Sprite;
+    bath : Sprite;
+
+    constructor(data: ObjectData, parent : Container) {
+        super(data, parent);
+
+        this.door = this.findObject('door') as Sprite;
+        this.mirror = this.findObject('mirror') as Sprite;
+        this.toilet = this.findObject('toilet') as Sprite;
+        this.bath = this.findObject('bath') as Sprite;
+
+        Helper.addTouchEndEvent({
+            container: this.door,
+            func: () => Dialog.show('문이다.\n잠겨있다.'),
+        });
+
+        Helper.addTouchEndEvent({
+            container: this.mirror,
+            func: () => Dialog.show('거울이다.\n뭔가 묻어있는것 같다.'),
+        });
+
+        Helper.addTouchEndEvent({
+            container: this.toilet,
+            func: () => Dialog.show('변기다.\n뭔가 묻어있는것 같다.'),
+        });
+
+        Helper.addTouchEndEvent({
+            container: this.bath,
+            func: () => Dialog.show('욕조다.\n뭔가 묻어있는것 같다.'),
+        });
+    }
+}
+
 export class SceneEntrance extends SceneBase {
-    scene_type: SceneType = SceneType.Entrance;
+    scene_type: SceneType = SceneType.ENTRANCE;
 
     rug : Sprite
     calendar : Sprite
@@ -109,12 +149,12 @@ export class SceneEntrance extends SceneBase {
             func: () => Dialog.show(['양탄자다.', '뭔가 묻어있는것 같다.']),
         });
 
-        Helper.addTouchChangeScene(this.door_lounge, SceneType.Lounge);
+        Helper.addTouchChangeScene(this.door_lounge, SceneType.LOUNGE);
     }
 }
 
 export class SceneLounge extends SceneBase {
-    scene_type: SceneType = SceneType.Lounge;
+    scene_type: SceneType = SceneType.LOUNGE;
     door_entrance: Sprite;
     sofa: Sprite;
 
@@ -124,7 +164,7 @@ export class SceneLounge extends SceneBase {
         this.door_entrance = this.findObject('door_entrance') as Sprite;
         this.sofa = this.findObject('sofa') as Sprite;
 
-        Helper.addTouchChangeScene(this.door_entrance, SceneType.Entrance);
+        Helper.addTouchChangeScene(this.door_entrance, SceneType.ENTRANCE);
 
         Helper.addTouchEndEvent({
 			container: this.sofa,
