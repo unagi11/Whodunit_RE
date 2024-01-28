@@ -10,7 +10,7 @@ export async function load_all() {
     });
     PIXI.Assets.add({
         alias: 'images',
-        src: ['./scene_entrance.png', './scene_lounge.png', './scene_restroom.png', './ui_dialog.png']
+        src: ['./scene_restroom.png', './ui_dialog.png']
     });
     await PIXI.Assets.load('fonts')
     await PIXI.Assets.load('images')
