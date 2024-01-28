@@ -27,14 +27,14 @@ export class Dialog extends ObjectBase {
         this.frame = this.findObject('frame') as PIXI.Sprite;
 
         let text_style = {
-            fontFamily : 'DOSPilgi',
-            fontSize: 16,
-            lineHeight: 20,
+            fontFamily : 'Silver',
+            fontSize: 64,
+            lineHeight: 64,
             wordWrap : true,
-            wordWrapWidth : 400
+            wordWrapWidth : 1000
         }
         this.text_box = new PIXI.Text('test', text_style);
-        this.text_box.position.set(20, 16);
+        this.text_box.position.set(30, 30);
         
         this.frame.addChild(this.text_box)
     }

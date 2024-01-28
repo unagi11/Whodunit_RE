@@ -28,8 +28,8 @@ export class Helper {
     static addTouchEndEvent(args : TouchArgs) {
         let { container, func, cursor, hitArea } = args;
 
-        container.interactive = true;
-        container.onpointerdown = e => {
+        container.eventMode = 'static';
+        container.onpointerdown = (e) => {
             func(e);
             document.body.style.cursor = CursorType.DEFAULT;
         };
@@ -37,7 +37,7 @@ export class Helper {
         container.onpointermove = (e) => {
 			document.body.style.cursor = cursor || CursorType.HELP;
 		};
-        container.onpointerout = e => {
+        container.onpointerout = (e) => {
             document.body.style.cursor = CursorType.DEFAULT;
         }
 

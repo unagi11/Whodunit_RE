@@ -19,7 +19,7 @@ export const app = new PIXI.Application({
 global.app = app;
 
 global.DESIGN_WIDTH  = 1536;     // 512 * 3
-global.DESIGN_HEIGHT = 1024;    // 512 * 2
+global.DESIGN_HEIGHT = 1024;     // 512 * 2
 
 global.RATIO_WIDTH  = 3;
 global.RATIO_HEIGHT = 2;
@@ -40,14 +40,14 @@ const n_scene = global.n_scene as PIXI.Container;
 root.addChild(n_scene);
 n_scene.name = 'n_scene';
 
-const global_filter = new PIXI.Filter(undefined, hologram_src);
-app.stage.filters = [global_filter];
+// const global_filter = new PIXI.Filter(undefined, hologram_src);
+// app.stage.filters = [global_filter];
 
 let u_time = 0;
 app.ticker.add(delta => {
     u_time += delta / 100;
-    global_filter.uniforms.u_time = u_time;
-    global_filter.uniforms.u_resolution = [global.REAL_WIDTH, global.REAL_HEIGHT];
+    // global_filter.uniforms.u_time = u_time;
+    // global_filter.uniforms.u_resolution = [global.REAL_WIDTH, global.REAL_HEIGHT];
 })
 
 main();
