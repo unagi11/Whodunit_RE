@@ -12,9 +12,9 @@ export class ObjectBase {
         this.root = new PIXI.Container();
         this.root.name = data.meta.image;
 
-		Object.values(data.frames).forEach((frame, index) => {
-			const layer = data.meta.layers[index];
-			const name = layer.name;
+        for (let layer of data.meta.layers) {
+            const name = layer.name;
+            const frame = data.frames[name];
 
 			let texture = PIXI.BaseTexture.from(`${data.meta.image}`);
 			let rect = frame.frame;
@@ -30,7 +30,7 @@ export class ObjectBase {
 
 			// 스테이지에 Sprite 추가
 			this.root.addChild(sprite);
-		});
+        }
 
         parent.addChild(this.root);
 	}

@@ -2,8 +2,6 @@ import { Container, Sprite } from 'pixi.js';
 import { ObjectBase, ObjectData } from './object';
 import { Dialog } from './dialog';
 import { CursorType, Helper } from './helper';
-import scene_entrance_json from '../static/scene_entrance.json';
-import scene_lounge_json from '../static/scene_lounge.json';
 import scene_restroom_json from '../static/scene_restroom.json';
 
 export enum SceneLayer {
@@ -42,11 +40,11 @@ export class SceneManager {
 
         switch (scene_type) {
             case SceneType.ENTRANCE:
-                instance.current_scene = new SceneEntrance(scene_entrance_json, n_scene);
+                // instance.current_scene = new SceneEntrance(scene_entrance_json, n_scene);
                 break;
 
             case SceneType.LOUNGE:
-                instance.current_scene = new SceneLounge(scene_lounge_json, n_scene);
+                // instance.current_scene = new SceneLounge(scene_lounge_json, n_scene);
                 break;
 
             case SceneType.KITCHEN:

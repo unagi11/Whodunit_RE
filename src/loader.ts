@@ -6,7 +6,7 @@ import * as PIXI from 'pixi.js';
 export async function load_all() {
     PIXI.Assets.add({
         alias: 'fonts',
-        src: './Silver.ttf'
+        src: './font_silver.ttf'
     });
     PIXI.Assets.add({
         alias: 'images',
