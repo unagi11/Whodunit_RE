@@ -12,8 +12,7 @@ export async function load_all() {
         alias: 'images',
         src: ['./scene_restroom.png', './ui_dialog.png']
     });
-    await PIXI.Assets.load('fonts')
-    await PIXI.Assets.load('images')
+    await PIXI.Assets.load(['fonts', 'images'])
 
     console.log('SYSTEM: All assets loaded.');
 }
