@@ -2,7 +2,7 @@
   "license": "",
   "scripts": {
     "start": "webpack serve --mode=development",
-    "build": "npm run-s clean build-only",
+    "build": "npm run clean && npm run build-only",
     "build-only": "webpack --mode=production",
     "clean": "rimraf dist"
   },

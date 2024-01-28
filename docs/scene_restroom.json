@@ -1,0 +1,58 @@
+{ "frames": {
+   "bg": {
+    "frame": { "x": 1, "y": 1, "w": 1536, "h": 1024 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1536, "h": 1024 },
+    "sourceSize": { "w": 1536, "h": 1024 },
+    "duration": 100
+   },
+   "bath": {
+    "frame": { "x": 1, "y": 1027, "w": 320, "h": 176 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 624, "y": 544, "w": 320, "h": 176 },
+    "sourceSize": { "w": 1536, "h": 1024 },
+    "duration": 100
+   },
+   "toilet": {
+    "frame": { "x": 1, "y": 1205, "w": 304, "h": 304 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 1024, "y": 608, "w": 304, "h": 304 },
+    "sourceSize": { "w": 1536, "h": 1024 },
+    "duration": 100
+   },
+   "mirror": {
+    "frame": { "x": 1, "y": 1511, "w": 192, "h": 416 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 112, "y": 112, "w": 192, "h": 416 },
+    "sourceSize": { "w": 1536, "h": 1024 },
+    "duration": 100
+   },
+   "door": {
+    "frame": { "x": 1, "y": 1929, "w": 112, "h": 432 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 416, "y": 176, "w": 112, "h": 432 },
+    "sourceSize": { "w": 1536, "h": 1024 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.2-x64",
+  "image": "scene_restroom.png",
+  "format": "RGBA8888",
+  "size": { "w": 1538, "h": 2362 },
+  "scale": "1",
+  "layers": [
+   { "name": "bg", "opacity": 255, "blendMode": "normal" },
+   { "name": "bath", "opacity": 255, "blendMode": "normal" },
+   { "name": "toilet", "opacity": 255, "blendMode": "normal" },
+   { "name": "mirror", "opacity": 255, "blendMode": "normal" },
+   { "name": "door", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}
